@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class MemberController extends Controller
 {
     function search($name){
-        return Member::where('name','like', '%'.$name.'%')->get();
+        $result = Member::where('name','like', '%'.$name.'%')->get();
+        if (count($result)>0) {
+            return $result;
+        } else {
+            return 'no record found';
+        }
+
     }
 }
